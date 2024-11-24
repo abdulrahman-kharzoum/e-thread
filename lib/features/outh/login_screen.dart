@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:et_driver/services/navigation/route_handler.gr.dart';
 import 'package:et_driver/themes/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -145,11 +146,12 @@ class LoginScreen extends ConsumerWidget {
 
               ElevatedButton(
                 onPressed: loginForm.isValid
-                    ? () {
+                    ? () async {
                         // Implement login logic
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Logged In!')),
                         );
+                        await AutoRouter.of(context).push(const HomeRoute());
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
